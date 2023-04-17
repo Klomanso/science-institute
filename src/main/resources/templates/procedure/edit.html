@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit procedure</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/procedures/{id}(id=${id})}" th:object="${procedure}">
+    <label for="name">Enter procedure name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+    <label for="description">Enter description: </label>
+    <input type="text" th:field="*{description}" id="description"/>
+    <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+    <br/>
+    <label for="duration">Enter duration: </label>
+    <input type="text" th:field="*{duration}" id="duration"/>
+    <div style="color:red" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration Error</div>
+    <br/>
+    <input type="submit" value="Update!"/>
+</form>
+
+</body>
+</html>

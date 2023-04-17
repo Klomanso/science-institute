@@ -1,5 +1,6 @@
 package com.example.scienceinstitute.model;
 
+import com.example.scienceinstitute.validation.RequiredAge;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -28,8 +29,8 @@ public class Employee {
         private String lastName;
 
         @Temporal(TemporalType.DATE)
-        @Column(name = "birth_date", nullable = false,
-                columnDefinition = "DATE CHECK (age(now(), (birth_date)) >= '18 years')")
+        @RequiredAge(years = 18)
+        @Column(name = "birth_date", nullable = false)
         private Date birthDate;
 
         @Temporal(TemporalType.DATE)

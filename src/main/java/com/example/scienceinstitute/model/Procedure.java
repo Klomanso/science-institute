@@ -2,10 +2,13 @@ package com.example.scienceinstitute.model;
 
 import io.hypersistence.utils.hibernate.type.interval.PostgreSQLIntervalType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.time.DurationMax;
 
 import java.time.Duration;
@@ -23,18 +26,20 @@ public class Procedure {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer number;
 
+        @NotEmpty @Length(max = 80)
         @Column(name = "proc_name", nullable = false, length = 80)
         private String name;
 
         @Column(name = "description", columnDefinition = "text")
         private String description;
 
+        @NotNull
         @DurationMax(days = 7)
         @Type(PostgreSQLIntervalType.class)
-        @Column(name = "duration", columnDefinition = "interval check (duration <= '7 days')", nullable = false)
+        @Column(name = "duration", columnDefinition = "interval", nullable = false)
         private Duration duration;
 
-        @ManyToMany(cascade = { CascadeType.ALL })
+        @ManyToMany
         @EqualsAndHashCode.Exclude
         @JoinTable(
                 name = "res_procedures",

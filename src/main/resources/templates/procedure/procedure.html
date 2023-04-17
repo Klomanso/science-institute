@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Procedure</title>
+</head>
+<body>
+<p th:text="${'Number: ' + procedure.number}">VALUE</p>
+<p th:text="${'Name: ' + procedure.name}">VALUE</p>
+<p th:text="${'Description: ' + procedure.description}">VALUE</p>
+<p th:text="${'Duration: ' + procedure.duration}">VALUE</p>
+
+<a th:href="@{/procedures/{id}/edit(id=${procedure.number})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/procedures/{id}(id=${procedure.number})}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>
