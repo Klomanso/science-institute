@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -31,7 +30,6 @@ public class ProcedureService {
                 return procedureRepository.findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("There isn't procedure with such number"));
         }
-
 
         @Modifying
         public Procedure update(Integer id, Procedure newProcedure) {

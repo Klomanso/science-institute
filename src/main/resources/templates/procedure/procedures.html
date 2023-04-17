@@ -5,6 +5,7 @@
     <title>Procedures</title>
 </head>
 <body>
+
 <tr th:each=" procedure : ${procedures} ">
     <a th:href="@{/procedures/{number}(number=${procedure.number})}"
        th:text="${procedure.number + ', ' + procedure.name}"/>

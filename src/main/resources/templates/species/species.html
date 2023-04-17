@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Species</title>
+</head>
+<body>
+
+<p th:text="${'Number: ' + species.number}">VALUE</p>
+<p th:text="${'Name: ' + species.name}">VALUE</p>
+
+<a th:href="@{/species/{id}/edit(id=${species.number})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/species/{id}(id=${species.number})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

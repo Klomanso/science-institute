@@ -5,6 +5,7 @@
     <title>Edit procedure</title>
 </head>
 <body>
+
 <form th:method="PATCH" th:action="@{/procedures/{id}(id=${id})}" th:object="${procedure}">
     <label for="name">Enter procedure name: </label>
     <input type="text" th:field="*{name}" id="name"/>

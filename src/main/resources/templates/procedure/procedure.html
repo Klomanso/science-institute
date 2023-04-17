@@ -5,6 +5,7 @@
     <title>Procedure</title>
 </head>
 <body>
+
 <p th:text="${'Number: ' + procedure.number}">VALUE</p>
 <p th:text="${'Name: ' + procedure.name}">VALUE</p>
 <p th:text="${'Description: ' + procedure.description}">VALUE</p>
@@ -15,5 +16,6 @@
 <form th:method="DELETE" th:action="@{/procedures/{id}(id=${procedure.number})}">
     <input type="submit" value="Delete"/>
 </form>
+
 </body>
 </html>
