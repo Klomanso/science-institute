@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,12 +28,10 @@ public class Employee {
         @Column(name = "last_name", length = 80)
         private String lastName;
 
-        @Temporal(TemporalType.DATE)
         @RequiredAge(years = 18)
         @Column(name = "birth_date", nullable = false)
         private Date birthDate;
 
-        @Temporal(TemporalType.DATE)
         @Column(name = "hire_date", nullable = false)
         private Date hireDate;
 
@@ -45,7 +43,7 @@ public class Employee {
         @JoinColumn(name = "education")
         private Education education;
 
-        @ManyToMany(cascade = { CascadeType.ALL })
+        @ManyToMany
         @EqualsAndHashCode.Exclude
         @JoinTable(
                 name = "res_team",

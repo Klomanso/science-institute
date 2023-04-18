@@ -14,8 +14,8 @@ import org.hibernate.validator.constraints.time.DurationMax;
 import org.hibernate.validator.constraints.time.DurationMin;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.Duration;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +37,6 @@ public class Research {
         @JoinColumn(name = "ogrn")
         private Customer customer;
 
-        @Temporal(TemporalType.DATE)
         @Column(name = "from_date", nullable = false)
         private Date fromDate;
 

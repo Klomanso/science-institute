@@ -8,8 +8,7 @@ import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
+import java.time.Period;
 
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
@@ -41,7 +40,7 @@ public @interface RequiredExperience {
 
                         boolean valid =
                                 this.allowable <=
-                                        ChronoUnit.YEARS.between(LocalDate.now(), (Temporal) lead.getHireDate());
+                                        Period.between(lead.getHireDate().toLocalDate(), LocalDate.now()).getYears();
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();

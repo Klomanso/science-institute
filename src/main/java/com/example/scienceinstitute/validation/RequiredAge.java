@@ -6,10 +6,9 @@ import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
 
 import java.lang.annotation.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.util.Date;
+import java.time.Period;
 
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
@@ -41,7 +40,7 @@ public @interface RequiredAge {
 
                         boolean valid =
                                 this.allowable <=
-                                        ChronoUnit.YEARS.between(LocalDate.now(), (Temporal) birthDate);
+                                        Period.between(birthDate.toLocalDate(), LocalDate.now()).getYears();
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();

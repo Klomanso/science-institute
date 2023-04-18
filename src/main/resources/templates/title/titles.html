@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titles</title>
+</head>
+<body>
+
+<tr th:each=" title : ${titles} ">
+    <a th:href="@{/titles/{number}(number=${title.number})}"
+       th:text="${title.number + ', ' + title.name}"/>
+    <hr>
+</tr>
+
+<a href="/titles/new">Create new title</a>
+
+</body>
+</html>

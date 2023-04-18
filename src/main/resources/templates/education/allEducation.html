@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Education</title>
+</head>
+<body>
+
+<tr th:each=" edu : ${education} ">
+    <a th:href="@{/education/{number}(number=${edu.number})}"
+       th:text="${edu.number + ', ' + edu.type}"/>
+    <hr>
+</tr>
+
+<a href="/education/new">Create new education</a>
+
+</body>
+</html>

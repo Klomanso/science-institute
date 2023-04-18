@@ -5,8 +5,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -45,7 +43,7 @@ public class Crop {
         @Column(name = "notes", columnDefinition = "text")
         private String notes;
 
-        @ManyToMany(cascade = { CascadeType.ALL })
+        @ManyToMany
         @EqualsAndHashCode.Exclude
         @JoinTable(
                 name = "res_samples",

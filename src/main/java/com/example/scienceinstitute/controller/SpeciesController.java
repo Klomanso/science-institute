@@ -1,6 +1,5 @@
 package com.example.scienceinstitute.controller;
 
-import com.example.scienceinstitute.model.Procedure;
 import com.example.scienceinstitute.model.Species;
 import com.example.scienceinstitute.service.SpeciesService;
 import jakarta.validation.Valid;

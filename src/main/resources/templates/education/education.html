@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Education</title>
+</head>
+<body>
+
+<p th:text="${'Number: ' + education.number}">VALUE</p>
+<p th:text="${'Type: ' + education.type}">VALUE</p>
+
+<a th:href="@{/education/{id}/edit(id=${education.number})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/education/{id}(id=${education.number})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New Species</title>
+    <title>New Title</title>
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/species}" th:object="${species}">
-    <label for="name">Enter species name: </label>
+<form th:method="POST" th:action="@{/titles}" th:object="${title}">
+    <label for="name">Enter title name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
     <input type="submit" value="Create!"/>
