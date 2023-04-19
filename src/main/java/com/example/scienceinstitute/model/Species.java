@@ -21,7 +21,8 @@ public class Species {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer number;
 
-        @NotEmpty @Length(max = 50)
+        @NotEmpty
+        @Length(max = 50)
         @Column(name = "spec_name", nullable = false, length = 50)
         private String name;
 
@@ -31,6 +32,6 @@ public class Species {
 
         @PreRemove
         private void preRemove() {
-                crops.forEach( crops -> crops.setSpecies(null) );
+                crops.forEach(crops -> crops.setSpecies(null));
         }
 }

@@ -10,13 +10,13 @@ import java.lang.annotation.*;
 import java.time.LocalDate;
 import java.time.Period;
 
-@Target({ ElementType.FIELD })
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = { RequiredExperience.Validator.class })
+@Constraint(validatedBy = {RequiredExperience.Validator.class})
 public @interface RequiredExperience {
 
-        String message() default  "Invalid lead experience in research. It must be at least(year(s)): ";
+        String message() default "Invalid lead experience in research. It must be at least(year(s)): ";
 
         Class<?>[] groups() default {};
 

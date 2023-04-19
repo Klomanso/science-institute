@@ -24,7 +24,7 @@ public class SpeciesController {
         }
 
         @GetMapping("/{id}")
-        public  ModelAndView getSpecies(@PathVariable("id") Integer id, ModelAndView modelAndView) {
+        public ModelAndView getSpecies(@PathVariable("id") Integer id, ModelAndView modelAndView) {
                 modelAndView.addObject("species", speciesService.findById(id));
                 modelAndView.setViewName("species/species");
                 return modelAndView;
@@ -32,14 +32,14 @@ public class SpeciesController {
 
         @GetMapping("/new")
         public ModelAndView newSpecies(@ModelAttribute("species") Species species,
-                                         ModelAndView modelAndView) {
+                                       ModelAndView modelAndView) {
                 modelAndView.setViewName("species/new");
                 return modelAndView;
         }
 
         @PostMapping
         public ModelAndView createSpecies(@ModelAttribute("species") @Valid Species species,
-                                            BindingResult bindingResult, ModelAndView modelAndView) {
+                                          BindingResult bindingResult, ModelAndView modelAndView) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.setViewName("species/new");
@@ -62,8 +62,8 @@ public class SpeciesController {
 
         @PatchMapping("/{id}")
         public ModelAndView editSpecies(@ModelAttribute("species") @Valid Species species,
-                                          BindingResult bindingResult, ModelAndView modelAndView,
-                                          @PathVariable("id") Integer id) {
+                                        BindingResult bindingResult, ModelAndView modelAndView,
+                                        @PathVariable("id") Integer id) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("id", id);

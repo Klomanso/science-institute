@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+</head>
+<body>
+
+<tr th:each=" customer : ${customers} ">
+    <a th:href="@{/customers/{number}(number=${customer.ogrn})}"
+       th:text="${customer.ogrn + ', ' + customer.title}"/>
+    <hr>
+</tr>
+
+<a href="/customers/new">Create new customer</a>
+
+</body>
+</html>

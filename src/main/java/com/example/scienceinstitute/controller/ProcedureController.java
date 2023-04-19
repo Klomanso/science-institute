@@ -24,7 +24,7 @@ public class ProcedureController {
         }
 
         @GetMapping("/{id}")
-        public  ModelAndView getProcedure(@PathVariable("id") Integer id, ModelAndView modelAndView) {
+        public ModelAndView getProcedure(@PathVariable("id") Integer id, ModelAndView modelAndView) {
                 modelAndView.addObject("procedure", procedureService.findById(id));
                 modelAndView.setViewName("procedure/procedure");
                 return modelAndView;

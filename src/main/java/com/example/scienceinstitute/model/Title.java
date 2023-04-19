@@ -21,7 +21,8 @@ public class Title {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer number;
 
-        @NotEmpty @Length(max = 80)
+        @NotEmpty
+        @Length(max = 80)
         @Column(name = "title_name", nullable = false, length = 80)
         private String name;
 
@@ -31,6 +32,6 @@ public class Title {
 
         @PreRemove
         private void preRemove() {
-                employees.forEach( employee -> employee.setTitle(null) );
+                employees.forEach(employee -> employee.setTitle(null));
         }
 }

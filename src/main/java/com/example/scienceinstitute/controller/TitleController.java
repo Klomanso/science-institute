@@ -1,6 +1,5 @@
 package com.example.scienceinstitute.controller;
 
-import com.example.scienceinstitute.model.Education;
 import com.example.scienceinstitute.model.Title;
 import com.example.scienceinstitute.service.TitleService;
 import jakarta.validation.Valid;
@@ -25,7 +24,7 @@ public class TitleController {
         }
 
         @GetMapping("/{id}")
-        public  ModelAndView getTitle(@PathVariable("id") Integer id, ModelAndView modelAndView) {
+        public ModelAndView getTitle(@PathVariable("id") Integer id, ModelAndView modelAndView) {
                 modelAndView.addObject("title", titleService.findById(id));
                 modelAndView.setViewName("title/title");
                 return modelAndView;
@@ -33,14 +32,14 @@ public class TitleController {
 
         @GetMapping("/new")
         public ModelAndView newTitle(@ModelAttribute("title") Title title,
-                                         ModelAndView modelAndView) {
+                                     ModelAndView modelAndView) {
                 modelAndView.setViewName("title/new");
                 return modelAndView;
         }
 
         @PostMapping
         public ModelAndView createTitle(@ModelAttribute("title") @Valid Title title,
-                                            BindingResult bindingResult, ModelAndView modelAndView) {
+                                        BindingResult bindingResult, ModelAndView modelAndView) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.setViewName("title/new");
@@ -63,8 +62,8 @@ public class TitleController {
 
         @PatchMapping("/{id}")
         public ModelAndView editTitle(@ModelAttribute("title") @Valid Title title,
-                                          BindingResult bindingResult, ModelAndView modelAndView,
-                                          @PathVariable("id") Integer id) {
+                                      BindingResult bindingResult, ModelAndView modelAndView,
+                                      @PathVariable("id") Integer id) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("id", id);

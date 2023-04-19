@@ -10,13 +10,13 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 
-@Target({ ElementType.FIELD })
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = { RequiredAge.Validator.class })
+@Constraint(validatedBy = {RequiredAge.Validator.class})
 public @interface RequiredAge {
 
-        String message() default  "Invalid employee age. It must be at least(year(s)): ";
+        String message() default "Invalid employee age. It must be at least(year(s)): ";
 
         Class<?>[] groups() default {};
 

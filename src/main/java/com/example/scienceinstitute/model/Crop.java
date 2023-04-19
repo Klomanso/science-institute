@@ -47,8 +47,8 @@ public class Crop {
         @EqualsAndHashCode.Exclude
         @JoinTable(
                 name = "res_samples",
-                joinColumns = { @JoinColumn(name = "brk_no") },
-                inverseJoinColumns = { @JoinColumn(name = "res_id") }
+                joinColumns = {@JoinColumn(name = "brk_no")},
+                inverseJoinColumns = {@JoinColumn(name = "res_id")}
         )
         Set<Research> research = new HashSet<>();
 }

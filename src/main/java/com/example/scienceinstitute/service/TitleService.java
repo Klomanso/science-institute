@@ -1,7 +1,6 @@
 package com.example.scienceinstitute.service;
 
 import com.example.scienceinstitute.exception.ResourceNotFoundException;
-import com.example.scienceinstitute.model.Education;
 import com.example.scienceinstitute.model.Title;
 import com.example.scienceinstitute.repository.TitleRepository;
 import lombok.AllArgsConstructor;

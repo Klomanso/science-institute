@@ -24,7 +24,7 @@ public class EducationController {
         }
 
         @GetMapping("/{id}")
-        public  ModelAndView getEducation(@PathVariable("id") Integer id, ModelAndView modelAndView) {
+        public ModelAndView getEducation(@PathVariable("id") Integer id, ModelAndView modelAndView) {
                 modelAndView.addObject("education", educationService.findById(id));
                 modelAndView.setViewName("education/education");
                 return modelAndView;
@@ -32,14 +32,14 @@ public class EducationController {
 
         @GetMapping("/new")
         public ModelAndView newEducation(@ModelAttribute("education") Education education,
-                                       ModelAndView modelAndView) {
+                                         ModelAndView modelAndView) {
                 modelAndView.setViewName("education/new");
                 return modelAndView;
         }
 
         @PostMapping
         public ModelAndView createEducation(@ModelAttribute("education") @Valid Education education,
-                                          BindingResult bindingResult, ModelAndView modelAndView) {
+                                            BindingResult bindingResult, ModelAndView modelAndView) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.setViewName("education/new");
@@ -62,8 +62,8 @@ public class EducationController {
 
         @PatchMapping("/{id}")
         public ModelAndView editEducation(@ModelAttribute("education") @Valid Education education,
-                                        BindingResult bindingResult, ModelAndView modelAndView,
-                                        @PathVariable("id") Integer id) {
+                                          BindingResult bindingResult, ModelAndView modelAndView,
+                                          @PathVariable("id") Integer id) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("id", id);

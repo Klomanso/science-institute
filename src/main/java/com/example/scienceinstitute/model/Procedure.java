@@ -26,7 +26,8 @@ public class Procedure {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer number;
 
-        @NotEmpty @Length(max = 80)
+        @NotEmpty
+        @Length(max = 80)
         @Column(name = "proc_name", nullable = false, length = 80)
         private String name;
 
@@ -43,8 +44,8 @@ public class Procedure {
         @EqualsAndHashCode.Exclude
         @JoinTable(
                 name = "res_procedures",
-                joinColumns = { @JoinColumn(name = "proc_no") },
-                inverseJoinColumns = { @JoinColumn(name = "res_id") }
+                joinColumns = {@JoinColumn(name = "proc_no")},
+                inverseJoinColumns = {@JoinColumn(name = "res_id")}
         )
         Set<Research> research = new HashSet<>();
 }

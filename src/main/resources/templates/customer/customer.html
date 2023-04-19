@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<body>
+
+<p th:text="${'OGRN: ' + customer.ogrn}">VALUE</p>
+<p th:text="${'Title: ' + customer.title}">VALUE</p>
+<p th:text="${'Email: ' + customer.email}">VALUE</p>
+<p th:text="${'Phone: ' + customer.phone}">VALUE</p>
+
+<a th:href="@{/customers/{id}/edit(id=${customer.ogrn})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/customers/{id}(id=${customer.ogrn})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

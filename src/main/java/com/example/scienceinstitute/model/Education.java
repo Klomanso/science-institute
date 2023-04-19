@@ -21,7 +21,8 @@ public class Education {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer number;
 
-        @NotEmpty @Length(max = 80)
+        @NotEmpty
+        @Length(max = 80)
         @Column(name = "edu_type", nullable = false, length = 80)
         private String type;
 
@@ -31,6 +32,6 @@ public class Education {
 
         @PreRemove
         private void preRemove() {
-                employees.forEach( employee -> employee.setEducation(null) );
+                employees.forEach(employee -> employee.setEducation(null));
         }
 }

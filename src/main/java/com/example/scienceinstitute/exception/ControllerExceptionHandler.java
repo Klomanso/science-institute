@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControllerExceptionHandler {
 
         @ResponseStatus(HttpStatus.NOT_FOUND)
-        @ExceptionHandler({ ResourceNotFoundException.class })
+        @ExceptionHandler({ResourceNotFoundException.class})
         public ModelAndView handleResourceNotFoundException(ResourceNotFoundException e) {
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.addObject("errorMessage", e.getMessage());

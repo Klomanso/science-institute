@@ -47,8 +47,8 @@ public class Employee {
         @EqualsAndHashCode.Exclude
         @JoinTable(
                 name = "res_team",
-                joinColumns = { @JoinColumn(name = "contract_no") },
-                inverseJoinColumns = { @JoinColumn(name = "res_id") }
+                joinColumns = {@JoinColumn(name = "contract_no")},
+                inverseJoinColumns = {@JoinColumn(name = "res_id")}
         )
         Set<Research> research = new HashSet<>();
 }

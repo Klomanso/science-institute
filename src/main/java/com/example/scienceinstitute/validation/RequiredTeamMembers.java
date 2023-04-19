@@ -9,10 +9,10 @@ import jakarta.validation.Payload;
 import java.lang.annotation.*;
 import java.util.Set;
 
-@Target({ElementType.FIELD })
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Constraint(validatedBy = { RequiredTeamMembers.Validator.class })
+@Constraint(validatedBy = {RequiredTeamMembers.Validator.class})
 public @interface RequiredTeamMembers {
 
         String message() default "Invalid amount of research team members. Required(min, max): ";
@@ -42,7 +42,7 @@ public @interface RequiredTeamMembers {
                 @Override
                 public boolean isValid(Set<Employee> values, ConstraintValidatorContext context) {
 
-                        boolean valid = values.size() >= this.min && values.size() <= this.max;
+                        boolean valid = this.min <= values.size() && values.size() <= this.max;
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();
