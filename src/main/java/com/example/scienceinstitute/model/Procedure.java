@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.time.DurationMax;
@@ -42,6 +43,7 @@ public class Procedure {
 
         @ManyToMany
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @JoinTable(
                 name = "res_procedures",
                 joinColumns = {@JoinColumn(name = "proc_no")},

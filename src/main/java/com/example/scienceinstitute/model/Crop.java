@@ -1,10 +1,13 @@
 package com.example.scienceinstitute.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,9 +20,11 @@ public class Crop {
 
         @Id
         @Column(name = "brk_no", length = 10)
-        @Pattern(regexp = "^\\d{4}\\Z", message = "Invalid Crop.brkNumber!")
+        @Pattern(regexp = "^\\d{4}\\Z", message = "Invalid Crop.brkNumber. Must be 4 digits")
         private String brkNumber;
 
+        @NotEmpty
+        @Length(max = 80)
         @Column(name = "name", nullable = false, length = 80)
         private String name;
 
@@ -45,6 +50,7 @@ public class Crop {
 
         @ManyToMany
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @JoinTable(
                 name = "res_samples",
                 joinColumns = {@JoinColumn(name = "brk_no")},

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Crops</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/crops}" th:object="${crop}">
+    <label for="brk">Enter crop BRK Number: </label>
+    <input type="text" th:field="*{brkNumber}" id="brk"/>
+    <div style="color:red" th:if="${#fields.hasErrors('brkNumber')}" th:errors="*{brkNumber}">BRK Error</div>
+    <br/>
+    <label for="title">Enter crop name: </label>
+    <input type="text" th:field="*{name}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <br/>
+
+    <label for="species">Enter crop species: </label>
+    <select class="form-select" id="species" th:field="*{species}" name="species" size="4">
+        <option th:value="${null}">No species</option>
+        <option class="o" th:each="spec : ${species}"
+                th:value="${spec.number}"
+                th:text="${spec.name}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('species')}" th:errors="*{species}">Species Error</div>
+    <br/>
+
+    <label for="res">Enter research result: </label>
+    <select class="form-select" id="res" th:field="*{researchResult}" size="4">
+        <option th:value="${null}">No research</option>
+        <option class="o" th:each="res : ${researchList}"
+                th:value="${res.id}"
+                th:text="${res.title}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('research')}" th:errors="*{research}">Research Error</div>
+    <br/>
+
+    <label for="winter">Winter Hardiness: </label>
+    <input type="checkbox" th:field="*{winterHardiness}" id="winter"/>
+    <div style="color:red" th:if="${#fields.hasErrors('winterHardiness')}" th:errors="*{winterHardiness}">Winter Error
+    </div>
+    <br/>
+
+    <label for="pd">PD Resistance: </label>
+    <input type="checkbox" th:field="*{pdResistance}" id="pd"/>
+    <div style="color:red" th:if="${#fields.hasErrors('pdResistance')}" th:errors="*{pdResistance}">PD Error</div>
+    <br/>
+
+    <label for="yields">Yields: </label>
+    <input type="checkbox" th:field="*{yields}" id="yields"/>
+    <div style="color:red" th:if="${#fields.hasErrors('yields')}" th:errors="*{yields}">Yields Error</div>
+    <br/>
+
+    <label for="notes">Enter crop notes: </label>
+    <input type="text" th:field="*{notes}" id="notes"/>
+    <div style="color:red" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}">Notes Error</div>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

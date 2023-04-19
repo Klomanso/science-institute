@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class Customer {
         private String phone;
 
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
         private List<Research> researchList = new ArrayList<>();
 

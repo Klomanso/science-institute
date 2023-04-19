@@ -9,6 +9,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -50,16 +51,19 @@ public class Research {
         private Employee lead;
 
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @ManyToMany(mappedBy = "research")
         private Set<Procedure> procedures = new HashSet<>();
 
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @ManyToMany(mappedBy = "research")
         @RequiredTeamMembers(min = 3, max = 7)
         private Set<@RequiredEducation(values = {"высшее", "бакалавр", "магистр",
                 "кандидат наук", "доктор наук"}) Employee> team = new HashSet<>();
 
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @ManyToMany(mappedBy = "research")
         private Set<Crop> samples = new HashSet<>();
 }

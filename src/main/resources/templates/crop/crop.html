@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop</title>
+</head>
+<body>
+
+<p th:text="${'brkNumber: ' + crop.brkNumber}">VALUE</p>
+<p th:text="${'Name: ' + crop.name}">VALUE</p>
+<p th:if="${crop.species != null}" th:text="${'Species: ' + crop.species.name}">VALUE</p>
+<p th:if="${crop.species == null}" th:text="${'Species: ' + crop.species}">VALUE</p>
+<p th:text="${'Winter hardiness: ' + crop.winterHardiness}">VALUE</p>
+<p th:text="${'PD Resistance: ' + crop.pdResistance}">VALUE</p>
+<p th:text="${'Yields: ' + crop.yields}">VALUE</p>
+<p th:text="${'Notes: ' + crop.notes}">VALUE</p>
+<p th:if="${crop.researchResult != null}" th:text="${'Research Result: ' + crop.researchResult.title}">VALUE</p>
+<p th:if="${crop.researchResult == null}" th:text="${'Research Result: ' + crop.researchResult}">VALUE</p>
+
+<a th:href="@{/crops/{id}/edit(id=${crop.brkNumber})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/crops/{id}(id=${crop.brkNumber})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

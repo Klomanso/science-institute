@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crops</title>
+</head>
+<body>
+
+<tr th:each=" crop : ${crops} ">
+    <a th:href="@{/crops/{number}(number=${crop.brkNumber})}"
+       th:text="${crop.brkNumber + ', ' + crop.name}"/>
+    <hr>
+</tr>
+
+<a href="/crops/new">Create new crop</a>
+
+</body>
+</html>

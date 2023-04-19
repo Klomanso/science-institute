@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.sql.Date;
 import java.util.HashSet;
@@ -45,6 +46,7 @@ public class Employee {
 
         @ManyToMany
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @JoinTable(
                 name = "res_team",
                 joinColumns = {@JoinColumn(name = "contract_no")},

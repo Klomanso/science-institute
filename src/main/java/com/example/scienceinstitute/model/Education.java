@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Education {
         private String type;
 
         @EqualsAndHashCode.Exclude
+        @ToString.Exclude
         @OneToMany(mappedBy = "education", cascade = CascadeType.PERSIST)
         private List<Employee> employees = new ArrayList<>();
 

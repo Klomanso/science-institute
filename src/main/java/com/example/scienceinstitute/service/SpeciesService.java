@@ -45,4 +45,8 @@ public class SpeciesService {
         public void deleteById(Integer id) {
                 speciesRepository.deleteById(id);
         }
+
+        public List<Species> findAllByOrderByName() {
+                return speciesRepository.findAllByOrderByName();
+        }
 }
