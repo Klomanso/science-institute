@@ -1,6 +1,5 @@
 package com.example.scienceinstitute.controller;
 
-import com.example.scienceinstitute.model.Crop;
 import com.example.scienceinstitute.model.Employee;
 import com.example.scienceinstitute.service.EducationService;
 import com.example.scienceinstitute.service.EmployeeService;
@@ -38,7 +37,7 @@ public class EmployeeController {
 
         @GetMapping("/new")
         public ModelAndView newEmployee(@ModelAttribute("employee") Employee employee,
-                                    ModelAndView modelAndView) {
+                                        ModelAndView modelAndView) {
 
                 modelAndView.addObject("titles", titleService.findAllByOrderByName());
                 modelAndView.addObject("education", educationService.findAllByOrderByType());
@@ -48,7 +47,7 @@ public class EmployeeController {
 
         @PostMapping
         public ModelAndView createEmployee(@ModelAttribute("employee") @Valid Employee employee,
-                                       BindingResult bindingResult, ModelAndView modelAndView) {
+                                           BindingResult bindingResult, ModelAndView modelAndView) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("titles", titleService.findAllByOrderByName());
@@ -75,8 +74,8 @@ public class EmployeeController {
 
         @PatchMapping("/{id}")
         public ModelAndView editEmployee(@ModelAttribute("employee") @Valid Employee employee,
-                                     BindingResult bindingResult, ModelAndView modelAndView,
-                                     @PathVariable("id") String id) {
+                                         BindingResult bindingResult, ModelAndView modelAndView,
+                                         @PathVariable("id") String id) {
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("id", id);

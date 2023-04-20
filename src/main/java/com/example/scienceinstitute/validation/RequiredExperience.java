@@ -40,7 +40,7 @@ public @interface RequiredExperience {
 
                         boolean valid = true;
                         if (lead != null) {
-                                 valid =
+                                valid =
                                         this.allowable <=
                                                 Period.between(lead.getHireDate().toLocalDate(), LocalDate.now())
                                                         .getYears();
