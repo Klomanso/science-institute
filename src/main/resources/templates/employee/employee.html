@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+</head>
+<body>
+
+<p th:text="${'Contract number: ' + employee.contract}">VALUE</p>
+<p th:text="${'First Name: ' + employee.firstName}">VALUE</p>
+<p th:text="${'Last Name: ' + employee.lastName}">VALUE</p>
+<p th:text="${'Birth Date: ' + employee.birthDate}">VALUE</p>
+<p th:text="${'Hire Date: ' + employee.hireDate}">VALUE</p>
+<p th:if="${employee.title != null}" th:text="${'Title: ' + employee.title.name}">VALUE</p>
+<p th:if="${employee.title == null}" th:text="${'Title: ' + employee.title}">VALUE</p>
+<p th:if="${employee.education != null}" th:text="${'Education: ' + employee.education.type}">VALUE</p>
+<p th:if="${employee.education == null}" th:text="${'Education: ' + employee.education}">VALUE</p>
+
+<a th:href="@{/employees/{id}/edit(id=${employee.contract})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/employees/{id}(id=${employee.contract})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

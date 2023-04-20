@@ -42,12 +42,15 @@ public @interface RequiredResearchPeriod {
                 @Override
                 public boolean isValid(Research research, ConstraintValidatorContext context) {
 
-                        boolean valid =
-                                (min <= Period.between(research.getFromDate().toLocalDate(),
-                                        research.getFinishDate().toLocalDate()).getMonths())
-                                        &&
-                                        (max >= Period.between(research.getFromDate().toLocalDate(),
-                                                research.getFinishDate().toLocalDate()).getMonths());
+                        boolean valid = true;
+                        if (research != null) {
+                                valid =
+                                        (min <= Period.between(research.getFromDate().toLocalDate(),
+                                                research.getFinishDate().toLocalDate()).getMonths())
+                                                &&
+                                                (max >= Period.between(research.getFromDate().toLocalDate(),
+                                                        research.getFinishDate().toLocalDate()).getMonths());
+                        }
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();

@@ -38,7 +38,10 @@ public @interface RequiredEducation {
                 @Override
                 public boolean isValid(Employee employee, ConstraintValidatorContext context) {
 
-                        boolean valid = this.allowable.contains(employee.getEducation().getType());
+                        boolean valid = true;
+                        if (employee != null) {
+                                valid = this.allowable.contains(employee.getEducation().getType());
+                        }
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();

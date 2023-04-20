@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<body>
+
+<tr th:each=" employee : ${employees} ">
+    <a th:href="@{/employees/{number}(number=${employee.contract})}"
+       th:text="${employee.contract + ', ' + employee.firstName + ' ' + employee.lastName}"/>
+    <hr>
+</tr>
+
+<a href="/employees/new">Create new employee</a>
+
+</body>
+</html>

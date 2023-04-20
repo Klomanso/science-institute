@@ -38,9 +38,12 @@ public @interface RequiredAge {
                 @Override
                 public boolean isValid(Date birthDate, ConstraintValidatorContext context) {
 
-                        boolean valid =
-                                this.allowable <=
-                                        Period.between(birthDate.toLocalDate(), LocalDate.now()).getYears();
+                        boolean valid = true;
+                        if (birthDate != null) {
+                                valid =
+                                        this.allowable <=
+                                                Period.between(birthDate.toLocalDate(), LocalDate.now()).getYears();
+                        }
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();

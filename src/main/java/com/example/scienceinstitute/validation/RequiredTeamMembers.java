@@ -42,7 +42,10 @@ public @interface RequiredTeamMembers {
                 @Override
                 public boolean isValid(Set<Employee> values, ConstraintValidatorContext context) {
 
-                        boolean valid = this.min <= values.size() && values.size() <= this.max;
+                        boolean valid = true;
+                        if (values != null) {
+                                valid = this.min <= values.size() && values.size() <= this.max;
+                        }
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();

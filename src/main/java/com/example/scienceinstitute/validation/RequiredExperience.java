@@ -38,9 +38,13 @@ public @interface RequiredExperience {
                 @Override
                 public boolean isValid(Employee lead, ConstraintValidatorContext context) {
 
-                        boolean valid =
-                                this.allowable <=
-                                        Period.between(lead.getHireDate().toLocalDate(), LocalDate.now()).getYears();
+                        boolean valid = true;
+                        if (lead != null) {
+                                 valid =
+                                        this.allowable <=
+                                                Period.between(lead.getHireDate().toLocalDate(), LocalDate.now())
+                                                        .getYears();
+                        }
 
                         if (!valid) {
                                 context.disableDefaultConstraintViolation();

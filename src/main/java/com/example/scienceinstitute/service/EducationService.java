@@ -45,4 +45,8 @@ public class EducationService {
         public void deleteById(Integer id) {
                 educationRepository.deleteById(id);
         }
+
+        public List<Education> findAllByOrderByType() {
+                return educationRepository.findAllByOrderByType();
+        }
 }

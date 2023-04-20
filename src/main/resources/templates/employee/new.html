@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Employee</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/employees}" th:object="${employee}">
+    <label for="contract">Enter employee contractNo: </label>
+    <input type="text" th:field="*{contract}" id="contract"/>
+    <div style="color:red" th:if="${#fields.hasErrors('contract')}" th:errors="*{contract}">Contract Error</div>
+    <br/>
+    <label for="title">Enter employee first name: </label>
+    <input type="text" th:field="*{firstName}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</div>
+    <br/>
+    <label for="title2">Enter employee last name: </label>
+    <input type="text" th:field="*{lastName}" id="title2"/>
+    <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</div>
+    <br/>
+    <label for="birthday">Birthday: </label>
+    <input type="date" id="birthday" name="birthday" th:field="*{birthDate}">
+    <div style="color:red" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">BirthDate Error</div>
+    <br/>
+    <label for="hire-day">Hire-day: </label>
+    <input type="date" id="hire-day" name="hire-day" th:field="*{hireDate}">
+    <div style="color:red" th:if="${#fields.hasErrors('hireDate')}" th:errors="*{hireDate}">HireDate Error</div>
+    <br/>
+
+    <label for="title3">Enter title: </label>
+    <select class="form-select" id="title3" th:field="*{title}" size="4">
+        <option th:value="${null}">No title</option>
+        <option class="o" th:each="tit : ${titles}"
+                th:value="${tit.number}"
+                th:text="${tit.name}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
+    <br/>
+
+    <label for="edu">Enter education: </label>
+    <select class="form-select" id="edu" th:field="*{education}" size="4">
+        <option th:value="${null}">No education</option>
+        <option class="o" th:each="edu : ${education}"
+                th:value="${edu.number}"
+                th:text="${edu.type}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('education')}" th:errors="*{education}">Education Error</div>
+    <br/>
+
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

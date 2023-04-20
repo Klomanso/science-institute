@@ -45,4 +45,8 @@ public class TitleService {
         public void deleteById(Integer id) {
                 titleRepository.deleteById(id);
         }
+
+        public List<Title> findAllByOrderByName() {
+                return titleRepository.findAllByOrderByName();
+        }
 }
