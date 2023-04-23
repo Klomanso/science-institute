@@ -41,13 +41,13 @@ public class Procedure {
         @Column(name = "duration", columnDefinition = "interval", nullable = false)
         private Duration duration;
 
-        @ManyToMany
         @EqualsAndHashCode.Exclude
         @ToString.Exclude
-        @JoinTable(
-                name = "res_procedures",
-                joinColumns = {@JoinColumn(name = "proc_no")},
-                inverseJoinColumns = {@JoinColumn(name = "res_id")}
-        )
-        Set<Research> research = new HashSet<>();
+        @ManyToMany(mappedBy = "procedures")
+        private Set<Research> research = new HashSet<>();
+
+        @PreRemove
+        private void preRemove() {
+                research.forEach(r -> r.getProcedures().remove(this));
+        }
 }

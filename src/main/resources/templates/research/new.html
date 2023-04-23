@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Research</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/research}" th:object="${research}">
+    <label for="title">Enter research title: </label>
+    <input type="text" th:field="*{title}" id="title"/>
+    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
+    <br/>
+    <label for="fromDate">From Date: </label>
+    <input type="date" id="fromDate" name="fromDate" th:field="*{fromDate}">
+    <div style="color:red" th:if="${#fields.hasErrors('fromDate')}" th:errors="*{fromDate}">FromDate Error</div>
+    <br/>
+    <label for="finishDate">Finish Date: </label>
+    <input type="date" id="finishDate" name="finishDate" th:field="*{finishDate}">
+    <div style="color:red" th:if="${#fields.hasErrors('finishDate')}" th:errors="*{finishDate}">FinishDate Error</div>
+    <br/>
+    <label for="budget">Enter research budget: </label>
+    <input type="number" th:field="*{budget}" id="budget" step=".01"/>
+    <div style="color:red" th:if="${#fields.hasErrors('budget')}" th:errors="*{budget}">Budget Error</div>
+    <br/>
+
+    <label for="customer">Enter customer: </label>
+    <select class="form-select" id="customer" th:field="*{customer}" size="4">
+        <option th:value="${null}">No customer</option>
+        <option class="o" th:each="cust : ${customers}"
+                th:value="${cust.ogrn}"
+                th:text="${cust.title}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Customer Error</div>
+    <br/>
+
+    <label for="lead">Enter Research Lead: </label>
+    <select class="form-select" id="lead" th:field="*{lead}" size="4">
+        <option th:value="${null}">No lead</option>
+        <option class="o" th:each="leader : ${employees}"
+                th:value="${leader.contract}"
+                th:text="${leader.firstName} + ' ' + ${leader.lastName}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('lead')}" th:errors="*{lead}">Lead Error</div>
+    <br/>
+
+    <label for="team">Enter Research team: </label>
+    <select class="form-select" id="team" th:field="*{team}" size="4" multiple>
+        <option class="o" th:each="emp : ${employees}"
+                th:value="${emp.contract}"
+                th:text="${emp.firstName} + ' ' + ${emp.lastName}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('team')}" th:errors="*{team}">Team Error</div>
+    <br/>
+
+    <label for="sample">Enter Research samples: </label>
+    <select class="form-select" id="sample" th:field="*{samples}" size="4" multiple>
+        <option class="o" th:each="samp : ${sampleList}"
+                th:value="${samp.brkNumber}"
+                th:text="${samp.name}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('samples')}" th:errors="*{samples}">Samples Error</div>
+    <br/>
+
+    <label for="procedures">Enter Research procedures: </label>
+    <select class="form-select" id="procedures" th:field="*{procedures}" size="4" multiple>
+        <option class="o" th:each="proc : ${procedureList}"
+                th:value="${proc.number}"
+                th:text="${proc.name}">
+        </option>
+    </select>
+    <div style="color:red" th:if="${#fields.hasErrors('procedures')}" th:errors="*{procedures}">Procedures Error</div>
+    <br/>
+
+    <div style="color:red" th:if="${#fields.hasErrors('global')}">
+        <p th:each="error : ${#fields.errors('global')}" th:text="${error}" class="error"></p>
+    </div>
+
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

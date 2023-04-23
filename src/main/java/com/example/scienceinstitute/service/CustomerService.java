@@ -47,4 +47,8 @@ public class CustomerService {
         public void deleteById(String id) {
                 customerRepository.deleteById(id);
         }
+
+        public List<Customer> findAllByOrderByTitle() {
+                return customerRepository.findAllByOrderByTitle();
+        }
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Research</title>
+</head>
+<body>
+
+<p th:text="${'Research id: ' + research.id}">VALUE</p>
+<p th:text="${'Title: ' + research.title}">VALUE</p>
+<p th:if="${research.customer != null}" th:text="${'Customer: ' + research.customer.title}">VALUE</p>
+<p th:if="${research.customer == null}" th:text="${'Customer: ' + research.customer}">VALUE</p>
+<p th:text="${'From Date: ' + research.fromDate}">VALUE</p>
+<p th:text="${'Finish Date: ' + research.finishDate}">VALUE</p>
+<p th:text="${'Budget: ' + research.budget} + '$'">VALUE</p>
+<p th:if="${research.lead != null}" th:text="${'Research Lead: ' + research.lead.firstName + ' ' + research.lead.lastName}">VALUE</p>
+<p th:if="${research.lead == null}" th:text="${'Research Lead: ' + research.lead}">VALUE</p>
+<p th:if="${research.procedures != null}" th:text="${'Procedures: ' + research.procedures.toString()}">VALUE</p>
+<p th:if="${research.procedures == null}" th:text="${'Procedures: ' + research.procedures}">VALUE</p>
+<p th:if="${research.team != null}" th:text="${'Team: ' + research.team.toString()}">VALUE</p>
+<p th:if="${research.team == null}" th:text="${'Team: ' + research.team}">VALUE</p>
+<p th:if="${research.samples != null}" th:text="${'Samples: ' + research.samples.toString()}">VALUE</p>
+<p th:if="${research.samples == null}" th:text="${'Samples: ' + research.samples}">VALUE</p>
+
+<a th:href="@{/research/{id}/edit(id=${research.id})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/research/{id}(id=${research.id})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

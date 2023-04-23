@@ -1,16 +1,19 @@
 package com.example.scienceinstitute.validation;
 
 import com.example.scienceinstitute.model.Employee;
+import com.example.scienceinstitute.model.Research;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
+import org.springframework.util.CollectionUtils;
 
 import java.lang.annotation.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
-@Target({ElementType.TYPE_USE})
+@Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = {RequiredEducation.Validator.class})
@@ -24,7 +27,7 @@ public @interface RequiredEducation {
 
         String[] values();
 
-        class Validator implements ConstraintValidator<RequiredEducation, Employee> {
+        class Validator implements ConstraintValidator<RequiredEducation, Set<Employee>> {
 
                 private String message;
                 private List<String> allowable;
@@ -36,11 +39,15 @@ public @interface RequiredEducation {
                 }
 
                 @Override
-                public boolean isValid(Employee employee, ConstraintValidatorContext context) {
+                public boolean isValid(Set<Employee> values, ConstraintValidatorContext context) {
 
                         boolean valid = true;
-                        if (employee != null) {
-                                valid = this.allowable.contains(employee.getEducation().getType());
+                        if (values != null) {
+                                for (Employee e : values) {
+                                        if (!allowable.contains(e.getEducation().getType())) {
+                                                valid = false; break;
+                                        }
+                                }
                         }
 
                         if (!valid) {

@@ -53,15 +53,10 @@ public class Employee {
         @JoinColumn(name = "education")
         private Education education;
 
-        @ManyToMany
         @EqualsAndHashCode.Exclude
         @ToString.Exclude
-        @JoinTable(
-                name = "res_team",
-                joinColumns = {@JoinColumn(name = "contract_no")},
-                inverseJoinColumns = {@JoinColumn(name = "res_id")}
-        )
-        Set<Research> research = new HashSet<>();
+        @ManyToMany(mappedBy = "team")
+        private Set<Research> research = new HashSet<>();
 
         @EqualsAndHashCode.Exclude
         @ToString.Exclude
@@ -71,5 +66,6 @@ public class Employee {
         @PreRemove
         private void preRemove() {
                 leadResearch.forEach(lead -> lead.setLead(null));
+                research.forEach(r -> r.getTeam().remove(this));
         }
 }

@@ -48,13 +48,13 @@ public class Crop {
         @Column(name = "notes", columnDefinition = "text")
         private String notes;
 
-        @ManyToMany
         @EqualsAndHashCode.Exclude
         @ToString.Exclude
-        @JoinTable(
-                name = "res_samples",
-                joinColumns = {@JoinColumn(name = "brk_no")},
-                inverseJoinColumns = {@JoinColumn(name = "res_id")}
-        )
-        Set<Research> research = new HashSet<>();
+        @ManyToMany(mappedBy = "samples")
+        private Set<Research> research = new HashSet<>();
+
+        @PreRemove
+        private void preRemove() {
+                research.forEach(r -> r.getSamples().remove(this));
+        }
 }

@@ -43,7 +43,7 @@ public @interface RequiredResearchPeriod {
                 public boolean isValid(Research research, ConstraintValidatorContext context) {
 
                         boolean valid = true;
-                        if (research != null) {
+                        if (research != null && research.getFromDate() != null && research.getFinishDate() != null) {
                                 valid =
                                         (min <= Period.between(research.getFromDate().toLocalDate(),
                                                 research.getFinishDate().toLocalDate()).getMonths())

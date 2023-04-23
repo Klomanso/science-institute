@@ -50,4 +50,8 @@ public class EmployeeService {
         public void deleteById(String id) {
                 employeeRepository.deleteById(id);
         }
+
+        public List<Employee> findAllByOrderByLastName() {
+                return employeeRepository.findAllByOrderByLastName();
+        }
 }

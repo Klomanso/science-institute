@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS
 CREATE TABLE crops (
     brk_no varchar(10) PRIMARY KEY,
     name varchar(80) NOT NULL,
-    spec_no serial,
+    spec_no int,
     winter_hardiness boolean DEFAULT false,
     pd_resistance boolean DEFAULT false,
     yields boolean DEFAULT false,
@@ -124,11 +124,12 @@ CREATE TABLE research (
     title varchar(150) NOT NULL,
     ogrn varchar(20),
     from_date date NOT NULL,
-    duration interval NOT NULL,
+    finish_date date NOT NULL,
     budget NUMERIC(12,2),
     lead_no varchar(10),
     CONSTRAINT research_budget_check CHECK ((budget > (0))),
-    CONSTRAINT research_duration_check CHECK (((duration >= '3 mons'::interval) AND (duration <= '1 year'::interval)))
+    CONSTRAINT research_duration_check CHECK (((age(finish_date, from_date) >= '3 mons'::interval)
+    	AND (age(finish_date, from_date) <= '1 year'::interval)))
 );
 
 --
