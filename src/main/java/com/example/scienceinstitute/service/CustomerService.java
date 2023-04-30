@@ -1,6 +1,6 @@
 package com.example.scienceinstitute.service;
 
-import com.example.scienceinstitute.exception.ResourceNotFoundException;
+import com.example.scienceinstitute.exception.BadActionException;
 import com.example.scienceinstitute.model.Customer;
 import com.example.scienceinstitute.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class CustomerService {
                 List<Customer> customers = customerRepository.findAll();
 
                 if (customers.isEmpty()) {
-                        throw new ResourceNotFoundException("There isn't any customer");
+                        throw new BadActionException("There isn't any customer");
                 } else {
                         return customers;
                 }
@@ -28,7 +28,7 @@ public class CustomerService {
 
         public Customer findById(String id) {
                 return customerRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("There isn't customer with such number"));
+                        .orElseThrow(() -> new BadActionException("There isn't customer with such number"));
         }
 
         @Modifying
@@ -50,5 +50,9 @@ public class CustomerService {
 
         public List<Customer> findAllByOrderByTitle() {
                 return customerRepository.findAllByOrderByTitle();
+        }
+
+        public boolean existsById(String id) {
+                return customerRepository.existsById(id);
         }
 }

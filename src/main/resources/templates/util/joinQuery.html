@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join Query</title>
+</head>
+<body>
+
+<div th:if="${research.isEmpty()}" th:text="'There isn\'t any data'"></div>
+
+<tr th:each="res : ${research} ">
+    <div th:text="${res.id + ', ' + res.title}">
+    </div>
+    <div th:each="t : ${res.team}">
+        <p th:text="${t.firstName + ' ' + t.lastName + '(' + t.title.name + ')'}"/>
+    </div>
+    <hr>
+</tr>
+
+</body>
+</html>

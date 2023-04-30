@@ -1,6 +1,6 @@
 package com.example.scienceinstitute.service;
 
-import com.example.scienceinstitute.exception.ResourceNotFoundException;
+import com.example.scienceinstitute.exception.BadActionException;
 import com.example.scienceinstitute.model.Title;
 import com.example.scienceinstitute.repository.TitleRepository;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class TitleService {
                 List<Title> titles = titleRepository.findAll();
 
                 if (titles.isEmpty()) {
-                        throw new ResourceNotFoundException("There isn't any title");
+                        throw new BadActionException("There isn't any title");
                 } else {
                         return titles;
                 }
@@ -28,7 +28,7 @@ public class TitleService {
 
         public Title findById(Integer id) {
                 return titleRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("There isn't title with such number"));
+                        .orElseThrow(() -> new BadActionException("There isn't title with such number"));
         }
 
         @Modifying

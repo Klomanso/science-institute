@@ -1,12 +1,10 @@
 package com.example.scienceinstitute.validation;
 
 import com.example.scienceinstitute.model.Employee;
-import com.example.scienceinstitute.model.Research;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
-import org.springframework.util.CollectionUtils;
 
 import java.lang.annotation.*;
 import java.util.Arrays;
@@ -45,7 +43,8 @@ public @interface RequiredEducation {
                         if (values != null) {
                                 for (Employee e : values) {
                                         if (!allowable.contains(e.getEducation().getType())) {
-                                                valid = false; break;
+                                                valid = false;
+                                                break;
                                         }
                                 }
                         }

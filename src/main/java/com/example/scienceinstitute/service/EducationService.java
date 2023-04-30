@@ -1,6 +1,6 @@
 package com.example.scienceinstitute.service;
 
-import com.example.scienceinstitute.exception.ResourceNotFoundException;
+import com.example.scienceinstitute.exception.BadActionException;
 import com.example.scienceinstitute.model.Education;
 import com.example.scienceinstitute.repository.EducationRepository;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class EducationService {
                 List<Education> educationList = educationRepository.findAll();
 
                 if (educationList.isEmpty()) {
-                        throw new ResourceNotFoundException("There isn't any education type");
+                        throw new BadActionException("There isn't any education type");
                 } else {
                         return educationList;
                 }
@@ -28,7 +28,7 @@ public class EducationService {
 
         public Education findById(Integer id) {
                 return educationRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("There isn't education with such number"));
+                        .orElseThrow(() -> new BadActionException("There isn't education with such number"));
         }
 
         @Modifying

@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,6 +41,11 @@ public class CustomerController {
         @PostMapping
         public ModelAndView createCustomer(@ModelAttribute("customer") @Valid Customer customer,
                                            BindingResult bindingResult, ModelAndView modelAndView) {
+
+                if (customerService.existsById(customer.getOgrn())) {
+                        bindingResult.addError(new FieldError("customer", "ogrn",
+                                "There is customer with such number, enter another number"));
+                }
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.setViewName("customer/new");

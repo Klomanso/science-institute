@@ -50,7 +50,7 @@
     <select class="form-select" id="team" th:field="*{team}" size="4" multiple>
         <option class="o" th:each="emp : ${employees}"
                 th:value="${emp.contract}"
-                th:text="${emp.firstName} + ' ' + ${emp.lastName}">
+                th:text="${emp.firstName} + ' ' + ${emp.lastName} + '(' + ${emp.education.type} + ')'">
         </option>
     </select>
     <div style="color:red" th:if="${#fields.hasErrors('team')}" th:errors="*{team}">Team Error</div>

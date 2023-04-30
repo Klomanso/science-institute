@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parameterized Query</title>
+</head>
+<body>
+
+<div th:if="${research.isEmpty()}" th:text="'There isn\'t any research'"></div>
+<form th:if="${!research.isEmpty()}" th:method="POST" th:action="@{/parameterizedQuery}" th:object="${empResearch}">
+
+    <label for="res">Research list: </label>
+    <select id="res" th:field="*{leadResearch}" multiple>
+        <option class="o" th:each="res : ${research}"
+                th:value="${res.id}"
+                th:text="${res.title}">
+        </option>
+    </select>
+    <input type="submit" value="Find!"/>
+
+</form>
+
+<hr>
+<div th:if="${employees.isEmpty()}" th:text="'There isn\'t any data'"></div>
+
+<tr th:each=" employee : ${employees} ">
+    <div th:text="${employee.contract + ', ' + employee.firstName + ' ' + employee.lastName}"/>
+    <div th:each="r : ${employee.leadResearch}">
+        <p th:text="${'(' + r.id + ' ' + r.title} + ')'"/>
+    </div>
+    <hr>
+</tr>
+
+</body>
+</html>

@@ -1,7 +1,8 @@
 package com.example.scienceinstitute.service;
 
-import com.example.scienceinstitute.exception.ResourceNotFoundException;
+import com.example.scienceinstitute.exception.BadActionException;
 import com.example.scienceinstitute.model.Employee;
+import com.example.scienceinstitute.model.Research;
 import com.example.scienceinstitute.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,7 +21,7 @@ public class EmployeeService {
                 List<Employee> employees = employeeRepository.findAll();
 
                 if (employees.isEmpty()) {
-                        throw new ResourceNotFoundException("There isn't any employee");
+                        throw new BadActionException("There isn't any employee");
                 } else {
                         return employees;
                 }
@@ -28,7 +29,7 @@ public class EmployeeService {
 
         public Employee findById(String id) {
                 return employeeRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("There isn't employee with such number"));
+                        .orElseThrow(() -> new BadActionException("There isn't employee with such number"));
         }
 
         @Modifying
@@ -53,5 +54,17 @@ public class EmployeeService {
 
         public List<Employee> findAllByOrderByLastName() {
                 return employeeRepository.findAllByOrderByLastName();
+        }
+
+        public boolean existsById(String id) {
+                return employeeRepository.existsById(id);
+        }
+
+        public List<Employee> conditionalQuery() {
+                return employeeRepository.conditionalQuery();
+        }
+
+        public List<Employee> parameterizedQuery(List<Research> researchList) {
+                return employeeRepository.parameterizedQuery(researchList);
         }
 }

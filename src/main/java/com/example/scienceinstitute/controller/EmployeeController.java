@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -48,6 +49,11 @@ public class EmployeeController {
         @PostMapping
         public ModelAndView createEmployee(@ModelAttribute("employee") @Valid Employee employee,
                                            BindingResult bindingResult, ModelAndView modelAndView) {
+
+                if (employeeService.existsById(employee.getContract())) {
+                        bindingResult.addError(new FieldError("employee", "contract",
+                                "There is employee with such number, enter another number"));
+                }
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("titles", titleService.findAllByOrderByName());

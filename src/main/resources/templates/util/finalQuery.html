@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Final Query</title>
+</head>
+<body>
+
+<div th:if="${researchList.isEmpty()}" th:text="'There isn\'t any data'"></div>
+
+<hr>
+<tr th:each="res : ${researchList} ">
+    <div th:text="${res.speciesName + ' count: ' + res.totalResearch}">
+    </div>
+    <hr>
+</tr>
+
+</body>
+</html>

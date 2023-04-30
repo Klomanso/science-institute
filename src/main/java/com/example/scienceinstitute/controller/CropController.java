@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,6 +48,11 @@ public class CropController {
         @PostMapping
         public ModelAndView createCrop(@ModelAttribute("crop") @Valid Crop crop,
                                        BindingResult bindingResult, ModelAndView modelAndView) {
+
+                if (cropService.existsById(crop.getBrkNumber())) {
+                        bindingResult.addError(new FieldError("crop", "brkNumber",
+                                "There is crop with such number, enter another number"));
+                }
 
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("species", speciesService.findAllByOrderByName());

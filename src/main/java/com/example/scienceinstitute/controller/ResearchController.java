@@ -40,8 +40,8 @@ public class ResearchController {
 
                 modelAndView.addObject("customers", customerService.findAllByOrderByTitle());
                 modelAndView.addObject("employees", employeeService.findAllByOrderByLastName());
-                modelAndView.addObject("procedureList", procedureService.findAll());
-                modelAndView.addObject("sampleList", cropService.findAll());
+                modelAndView.addObject("procedureList", procedureService.findAllByOrderByName());
+                modelAndView.addObject("sampleList", cropService.findAllByOrderByName());
                 modelAndView.setViewName("research/new");
                 return modelAndView;
         }
@@ -53,8 +53,8 @@ public class ResearchController {
                 if (bindingResult.hasErrors()) {
                         modelAndView.addObject("customers", customerService.findAllByOrderByTitle());
                         modelAndView.addObject("employees", employeeService.findAllByOrderByLastName());
-                        modelAndView.addObject("procedureList", procedureService.findAll());
-                        modelAndView.addObject("sampleList", cropService.findAll());
+                        modelAndView.addObject("procedureList", procedureService.findAllByOrderByName());
+                        modelAndView.addObject("sampleList", cropService.findAllByOrderByName());
                         modelAndView.setViewName("research/new");
                         return modelAndView;
                 }
@@ -71,8 +71,8 @@ public class ResearchController {
                 modelAndView.addObject("customers", customerService.findAllByOrderByTitle());
                 modelAndView.addObject("employees", employeeService.findAllByOrderByLastName());
                 modelAndView.addObject("research", researchService.findById(id));
-                modelAndView.addObject("procedureList", procedureService.findAll());
-                modelAndView.addObject("sampleList", cropService.findAll());
+                modelAndView.addObject("procedureList", procedureService.findAllByOrderByName());
+                modelAndView.addObject("sampleList", cropService.findAllByOrderByName());
                 modelAndView.setViewName("research/edit");
                 return modelAndView;
         }
@@ -86,8 +86,8 @@ public class ResearchController {
                         modelAndView.addObject("id", id);
                         modelAndView.addObject("customers", customerService.findAllByOrderByTitle());
                         modelAndView.addObject("employees", employeeService.findAllByOrderByLastName());
-                        modelAndView.addObject("procedureList", procedureService.findAll());
-                        modelAndView.addObject("sampleList", cropService.findAll());
+                        modelAndView.addObject("procedureList", procedureService.findAllByOrderByName());
+                        modelAndView.addObject("sampleList", cropService.findAllByOrderByName());
                         modelAndView.setViewName("research/edit");
                         return modelAndView;
                 }

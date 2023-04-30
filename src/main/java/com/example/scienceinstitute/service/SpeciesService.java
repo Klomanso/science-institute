@@ -1,6 +1,6 @@
 package com.example.scienceinstitute.service;
 
-import com.example.scienceinstitute.exception.ResourceNotFoundException;
+import com.example.scienceinstitute.exception.BadActionException;
 import com.example.scienceinstitute.model.Species;
 import com.example.scienceinstitute.repository.SpeciesRepository;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class SpeciesService {
                 List<Species> species = speciesRepository.findAll();
 
                 if (species.isEmpty()) {
-                        throw new ResourceNotFoundException("There isn't any species");
+                        throw new BadActionException("There isn't any species");
                 } else {
                         return species;
                 }
@@ -28,7 +28,7 @@ public class SpeciesService {
 
         public Species findById(Integer id) {
                 return speciesRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("There isn't species with such number"));
+                        .orElseThrow(() -> new BadActionException("There isn't species with such number"));
         }
 
         @Modifying
@@ -48,5 +48,9 @@ public class SpeciesService {
 
         public List<Species> findAllByOrderByName() {
                 return speciesRepository.findAllByOrderByName();
+        }
+
+        public List<SpeciesRepository.IResearchSamplesCount> finalQuery() {
+                return speciesRepository.finalQuery();
         }
 }

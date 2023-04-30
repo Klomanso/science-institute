@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conditional Query</title>
+</head>
+<body>
+
+<div th:if="${employees.isEmpty()}" th:text="'There isn\'t any data'"></div>
+
+<tr th:each=" employee : ${employees} ">
+    <div th:text="${employee.contract + ', ' + employee.firstName + ' ' + employee.lastName}"/>
+    <div th:each="r : ${employee.research}">
+        <p th:text="${'(' + r.id + ' ' + r.title} + ')'"/>
+    </div>
+    <hr>
+</tr>
+
+</body>
+</html>
