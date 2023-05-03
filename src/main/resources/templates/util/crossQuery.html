@@ -10,12 +10,15 @@
 
 <hr>
 <tr th:each="res : ${researchList} ">
-    <div th:tex;="${res.year + ' ' + res.jan + ' ' + res.feb + ' ' + res.mar + ' '
+    <div th:text="${res.year + ' ' + res.jan + ' ' + res.feb + ' ' + res.mar + ' '
     + res.apr + ' ' + res.may + ' ' + res.jun + ' ' + res.jul + ' '
     + res.aug + ' ' + res.sep + ' ' + res.oct + ' ' + res.nov + ' ' + res.dec}">
     </div>
     <hr>
 </tr>
 
+<hr>
+<a href="/home">Home</a>
+<hr>
 </body>
 </html>

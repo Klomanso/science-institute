@@ -1,5 +1,6 @@
 package com.example.scienceinstitute.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -39,6 +40,7 @@ public class Customer {
         @Column(name = "phone_number", length = 50, nullable = false)
         private String phone;
 
+        @JsonBackReference
         @EqualsAndHashCode.Exclude
         @ToString.Exclude
         @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)

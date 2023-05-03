@@ -3,10 +3,13 @@ package com.example.scienceinstitute.service;
 import com.example.scienceinstitute.exception.BadActionException;
 import com.example.scienceinstitute.model.Research;
 import com.example.scienceinstitute.repository.ResearchRepository;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 @Service
@@ -69,5 +72,16 @@ public class ResearchService {
 
         public void createViewOfResearchReport() {
                 researchRepository.createViewOfResearchReport();
+        }
+
+        public byte[] convertToPDF(String html) {
+
+                ByteArrayOutputStream target = new ByteArrayOutputStream();
+                ConverterProperties converterProperties = new ConverterProperties();
+
+                converterProperties.setBaseUri("http://localhost:9080");
+                HtmlConverter.convertToPdf(html, target, converterProperties);
+
+                return target.toByteArray();
         }
 }

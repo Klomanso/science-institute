@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Research Report PDF</title>
+</head>
+<body>
+
+<div th:if="${research == null}" th:text="'There isn\'t any data'"></div>
+
+    <p th:text="${'Title: ' + research.title}">VALUE</p>
+    <p th:if="${research.customer != null}" th:text="${'Customer: ' + research.customer.title}">VALUE</p>
+    <p th:if="${research.customer == null}" th:text="${'Customer: none'}">VALUE</p>
+    <p th:text="${'From Date: ' + research.fromDate}">VALUE</p>
+    <p th:text="${'Finish Date: ' + research.finishDate}">VALUE</p>
+    <p th:text="${'Budget: ' + research.budget} + '$'">VALUE</p>
+    <p th:if="${research.lead != null}"
+       th:text="${'Research Lead: ' + research.lead.firstName + ' ' + research.lead.lastName}">VALUE</p>
+    <p th:if="${research.lead == null}" th:text="${'Research Lead: none'}">VALUE</p>
+
+    <p th:if="${research.procedures.isEmpty()}" th:text="'Procedures: none'">VALUE</p>
+    <p th:if="${!research.procedures.isEmpty()}" th:text="'Procedures: '"></p>
+    <div th:if="${research.procedures != null}">
+            <div th:each="p : ${research.procedures} ">
+                <p><pre th:text="${' - ' + p.name}"></pre></p>
+            </div>
+    </div>
+
+    <p th:if="${research.team.isEmpty()}" th:text="'Team: none'">VALUE</p>
+    <p th:if="${!research.team.isEmpty()}" th:text="'Team: '"></p>
+    <div th:if="${research.team != null}">
+        <div th:each="t : ${research.team} ">
+            <p><pre th:text="${' - ' + t.firstName + ' ' + t.lastName}"></pre></p>
+        </div>
+    </div>
+
+    <p th:if="${research.samples.isEmpty()}" th:text="'Samples: none'">VALUE</p>
+    <p th:if="${!research.samples.isEmpty()}" th:text="'Samples: '"></p>
+    <div th:if="${research.samples != null}">
+        <div th:each="s : ${research.samples} ">
+            <p><pre th:if="${s.species != null}" th:text="${' - ' + s.name + '(' + s.species.name + ')'}"></pre></p>
+            <p><pre th:if="${s.species == null}" th:text="${' - ' + s.name}"></pre></p>
+        </div>
+    </div>
+    <hr>
+</tr>
+
+</body>
+</html>

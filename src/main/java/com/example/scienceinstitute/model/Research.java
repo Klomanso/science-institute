@@ -5,6 +5,7 @@ import com.example.scienceinstitute.validation.RequiredExperience;
 import com.example.scienceinstitute.validation.RequiredResearchPeriod;
 import com.example.scienceinstitute.validation.RequiredTeamMembers;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -52,6 +53,7 @@ public class Research {
 
         @NotNull
         @PositiveOrZero(message = "Budget must be >= 0")
+        @Max(value = 99999, message = "Budget must be <= 99999")
         @Column(name = "budget", precision = 12, scale = 2)
         private BigDecimal budget;
 

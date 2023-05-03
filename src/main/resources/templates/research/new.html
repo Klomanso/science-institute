@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
     <title>New Research</title>
 </head>
 <body>
+
+<div>
+<label for="customer1">More Info about customer: </label>
+<select class="form-select" id="customer1" size="4">
+    <option class="o" th:each="cust : ${customers}"
+            th:value="${cust.ogrn}"
+            th:text="${cust.title}"
+<!--
+            th:data-userId="${cust.ogrn}">
+-->
+    </option>
+</select>
+<button class="go-btn" type="submit" data-toggle="modal" data-target="#userEditDialog2">More</button>
+</div>
+<hr>
 
 <form th:method="POST" th:action="@{/research}" th:object="${research}">
     <label for="title">Enter research title: </label>
@@ -26,13 +46,26 @@
 
     <label for="customer">Enter customer: </label>
     <select class="form-select" id="customer" th:field="*{customer}" size="4">
-        <option th:value="${null}">No customer</option>
+        <option value="null" th:text="'No customer'">
+        </option>
         <option class="o" th:each="cust : ${customers}"
                 th:value="${cust.ogrn}"
                 th:text="${cust.title}">
         </option>
     </select>
     <div style="color:red" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">Customer Error</div>
+
+    <div class="col-12">
+        <button id="create-user" type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#userEditDialog">Add Customer</button>
+    </div>
+
+<!--
+    <div th:each="cust : ${customers}">
+    <button id="edit-user" type="button" class="btn btn-success" data-toggle="modal" data-target="#userEditDialog2"
+            th:data-userId="${cust.ogrn}" th:text="${cust.title}"><i class="fas fa-edit"></i></button>
+    </div>
+-->
     <br/>
 
     <label for="lead">Enter Research Lead: </label>
@@ -83,5 +116,156 @@
     <input type="submit" value="Create!"/>
 </form>
 
+
+<div class="modal fade" id="userEditDialog" tabindex="-1" role="dialog" aria-labelledby="userEditDialogLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userEditDialogLabel">Add Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="cust-form">
+                    <div class="form-group">
+                        <label for="cust-ogrn-a" class="col-form-label">Customer ogrn</label>
+                        <input type="text" class="form-control" id="cust-ogrn-a">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-title-a" class="col-form-label">Title</label>
+                        <input type="text" class="form-control" id="cust-title-a">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-email-a" class="col-form-label">Email</label>
+                        <input type="text" class="form-control" id="cust-email-a">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-phone-a" class="col-form-label">Phone</label>
+                        <input type="text" class="form-control" id="cust-phone-a">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="save-customer-button" type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------------------------------------------------------------------------------------>
+
+<div class="modal fade" id="userEditDialog2" tabindex="-1" role="dialog" aria-labelledby="userEditDialogLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userEditDialogLabel2">Customer info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="cust-ogrn" class="col-form-label">Customer ogrn</label>
+                        <input type="text" class="form-control" id="cust-ogrn" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-title" class="col-form-label">Title</label>
+                        <input type="text" class="form-control" id="cust-title" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-email" class="col-form-label">Email</label>
+                        <input type="text" class="form-control" id="cust-email" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-phone" class="col-form-label">Phone</label>
+                        <input type="text" class="form-control" id="cust-phone" disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    $('#userEditDialog2').on('shown.bs.modal', function () {
+
+        let userId = $('#customer1 option:selected').attr('value');
+
+/*
+        let userId = button.data('userid')
+*/
+
+        if (userId) {
+            $.get({
+                url: '/api/v1/customer/' + userId,
+                success: (data) => {
+                    let modal = $(this)
+                    console.log(data.title);
+                    modal.find('#cust-ogrn').val(data.ogrn)
+                    modal.find('#cust-title').val(data.title)
+                    modal.find('#cust-email').val(data.email)
+                    modal.find('#cust-phone').val(data.phone)
+                },
+                error: (err) => {
+                    alert(err);
+                }
+            });
+        }
+    })
+
+    $('#save-customer-button').click(function() {
+        let modal = $('#userEditDialog')
+        let user = {
+            ogrn: modal.find('#cust-ogrn-a').val(),
+            title: modal.find('#cust-title-a').val(),
+            email: modal.find('#cust-email-a').val(),
+            phone: modal.find('#cust-phone-a').val(),
+        };
+        $.ajax({
+            url: '/api/v1/customer',
+            type: 'POST',
+            data: JSON.stringify(user),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: () => {
+                location.reload()
+            },
+            error: () => {
+                alert("Invalid credentials: title, email, phone - are must not be empty\n" +
+                    "OGRN must contains 13 digits\n" +
+                    "(May be there is customer with such ogrn. Try another)");
+            }
+        })
+
+        modal.modal('hide');
+        document.getElementById("cust-form").reset();
+    });
+
+    $('.modal').on('hidden.bs.modal', function(){
+        $(this).find('form')[0].reset();
+    });
+</script>
+
+<hr>
+<a href="/home">Home</a>
+<hr>
 </body>
 </html>

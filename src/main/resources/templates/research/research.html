@@ -27,6 +27,11 @@
 <form th:method="DELETE" th:action="@{/research/{id}(id=${research.id})}">
     <input type="submit" value="Delete"/>
 </form>
-
+<form th:method="GET" th:action="@{/research/{id}/pdf(id=${research.id})}">
+    <input type="submit" value="Print To PDF"/>
+</form>
+<hr>
+<a href="/home">Home</a>
+<hr>
 </body>
 </html>
