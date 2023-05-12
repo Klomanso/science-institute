@@ -48,7 +48,7 @@
 
     <label for="team">Enter Research team: </label>
     <select class="form-select" id="team" th:field="*{team}" size="4" multiple>
-        <option class="o" th:each="emp : ${employees}"
+        <option class="o" th:each="emp : ${employees}" th:if="${emp.education != null}"
                 th:value="${emp.contract}"
                 th:text="${emp.firstName} + ' ' + ${emp.lastName} + '(' + ${emp.education.type} + ')'">
         </option>

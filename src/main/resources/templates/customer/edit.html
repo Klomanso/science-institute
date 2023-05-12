@@ -1,29 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <title>Edit Customer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
 </head>
-<body>
 
-<form th:method="PATCH" th:action="@{/customers/{id}(id=${id})}" th:object="${customer}">
-    <label for="title">Enter customer title: </label>
-    <input type="text" th:field="*{title}" id="title"/>
-    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</div>
-    <br/>
-    <label for="email">Enter email: </label>
-    <input type="text" th:field="*{email}" id="email"/>
-    <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
-    <br/>
-    <label for="phone">Enter phone: </label>
-    <input type="text" th:field="*{phone}" id="phone"/>
-    <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</div>
-    <br/>
-    <input type="submit" value="Create!"/>
-</form>
+<body class="h-75">
 
-<hr>
-<a href="/home">Home</a>
-<hr>
+<div class="container h-75">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h1 class="justify-content-center text-black">Edit Customer</h1>
+        <div class="col-12 col-md-12 col-lg-12 p-4 border border-4 rounded rounded-5">
+            <form class="needs-validation" novalidate th:method="PATCH" th:action="@{/customers/{id}(id=${id})}"
+                  th:object="${customer}">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Title" th:field="*{title}"
+                               required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}"
+                               required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Phone" th:field="*{phone}"
+                               required>
+                        <div class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+                    </div>
+                </div>
+                <div class="brn-group">
+                    <button class="btn btn-primary col-2" type="submit">Submit</button>
+                    <div class="btn-group col-2" role="group">
+                        <a type="button" class="btn btn-dark" href="/home">Home</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
+
 </html>

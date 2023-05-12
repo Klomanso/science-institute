@@ -37,10 +37,10 @@ public class UtilController {
                 return modelAndView;
         }
 
-        @GetMapping("/joinQuery")
-        public ModelAndView getJoinQuery(ModelAndView modelAndView) {
-                modelAndView.addObject("research", researchService.joinQuery());
-                modelAndView.setViewName("util/joinQuery");
+        @GetMapping("/unionQuery")
+        public ModelAndView getUnionQuery(ModelAndView modelAndView) {
+                modelAndView.addObject("research", researchService.unionQuery());
+                modelAndView.setViewName("util/unionQuery");
                 return modelAndView;
         }
 

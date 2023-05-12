@@ -13,7 +13,8 @@
     <br/>
     <label for="description">Enter description: </label>
     <input type="text" th:field="*{description}" id="description"/>
-    <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+    <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error
+    </div>
     <br/>
     <label for="duration">Enter duration: </label>
     <input type="text" th:field="*{duration}" id="duration"/>

@@ -62,8 +62,8 @@ public class ResearchService {
                 researchRepository.deleteById(id);
         }
 
-        public List<Research> joinQuery() {
-                return researchRepository.joinQuery();
+        public List<String> unionQuery() {
+                return researchRepository.unionQuery();
         }
 
         public List<ResearchRepository.IResearchDynamics> crossQuery() {

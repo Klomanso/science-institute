@@ -12,8 +12,11 @@ public interface ResearchRepository extends JpaRepository<Research, Integer> {
 
         List<Research> findAllByOrderByTitle();
 
-        @Query("from Research r inner join fetch r.team rt inner join fetch rt.title")
-        List<Research> joinQuery();
+        @Query(value = """
+                SELECT concat(e.first_name, ' ', e.last_name) FROM employees e\s
+                UNION
+                SELECT r.title FROM research r""", nativeQuery = true)
+        List<String> unionQuery();
 
         @Modifying
         @Transactional

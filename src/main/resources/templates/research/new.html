@@ -12,17 +12,17 @@
 <body>
 
 <div>
-<label for="customer1">More Info about customer: </label>
-<select class="form-select" id="customer1" size="4">
-    <option class="o" th:each="cust : ${customers}"
-            th:value="${cust.ogrn}"
-            th:text="${cust.title}"
-<!--
-            th:data-userId="${cust.ogrn}">
--->
-    </option>
-</select>
-<button class="go-btn" type="submit" data-toggle="modal" data-target="#userEditDialog2">More</button>
+    <label for="customer1">More Info about customer: </label>
+    <select class="form-select" id="customer1" size="4">
+        <option class="o" th:each="cust : ${customers}"
+                th:value="${cust.ogrn}"
+                th:text="${cust.title}"
+        <!--
+                    th:data-userId="${cust.ogrn}">
+        -->
+        </option>
+    </select>
+    <button class="go-btn" type="submit" data-toggle="modal" data-target="#userEditDialog2">More</button>
 </div>
 <hr>
 
@@ -57,15 +57,16 @@
 
     <div class="col-12">
         <button id="create-user" type="button" class="btn btn-primary" data-toggle="modal"
-                data-target="#userEditDialog">Add Customer</button>
+                data-target="#userEditDialog">Add Customer
+        </button>
     </div>
 
-<!--
-    <div th:each="cust : ${customers}">
-    <button id="edit-user" type="button" class="btn btn-success" data-toggle="modal" data-target="#userEditDialog2"
-            th:data-userId="${cust.ogrn}" th:text="${cust.title}"><i class="fas fa-edit"></i></button>
-    </div>
--->
+    <!--
+        <div th:each="cust : ${customers}">
+        <button id="edit-user" type="button" class="btn btn-success" data-toggle="modal" data-target="#userEditDialog2"
+                th:data-userId="${cust.ogrn}" th:text="${cust.title}"><i class="fas fa-edit"></i></button>
+        </div>
+    -->
     <br/>
 
     <label for="lead">Enter Research Lead: </label>
@@ -81,7 +82,7 @@
 
     <label for="team">Enter Research team: </label>
     <select class="form-select" id="team" th:field="*{team}" size="4" multiple>
-        <option class="o" th:each="emp : ${employees}"
+        <option class="o" th:each="emp : ${employees}" th:if="${emp.education != null}"
                 th:value="${emp.contract}"
                 th:text="${emp.firstName} + ' ' + ${emp.lastName} + '(' + ${emp.education.type} + ')'">
         </option>
@@ -117,7 +118,8 @@
 </form>
 
 
-<div class="modal fade" id="userEditDialog" tabindex="-1" role="dialog" aria-labelledby="userEditDialogLabel" aria-hidden="true">
+<div class="modal fade" id="userEditDialog" tabindex="-1" role="dialog" aria-labelledby="userEditDialogLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -156,7 +158,8 @@
 
 <!------------------------------------------------------------------------------------------>
 
-<div class="modal fade" id="userEditDialog2" tabindex="-1" role="dialog" aria-labelledby="userEditDialogLabel" aria-hidden="true">
+<div class="modal fade" id="userEditDialog2" tabindex="-1" role="dialog" aria-labelledby="userEditDialogLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -209,9 +212,9 @@
 
         let userId = $('#customer1 option:selected').attr('value');
 
-/*
-        let userId = button.data('userid')
-*/
+        /*
+                let userId = button.data('userid')
+        */
 
         if (userId) {
             $.get({
@@ -231,7 +234,7 @@
         }
     })
 
-    $('#save-customer-button').click(function() {
+    $('#save-customer-button').click(function () {
         let modal = $('#userEditDialog')
         let user = {
             ogrn: modal.find('#cust-ogrn-a').val(),
@@ -259,7 +262,7 @@
         document.getElementById("cust-form").reset();
     });
 
-    $('.modal').on('hidden.bs.modal', function(){
+    $('.modal').on('hidden.bs.modal', function () {
         $(this).find('form')[0].reset();
     });
 </script>

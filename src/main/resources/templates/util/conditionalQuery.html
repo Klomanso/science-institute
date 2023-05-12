@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Conditional Query</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
 </head>
 <body>
 
 <div th:if="${employees.isEmpty()}" th:text="'There isn\'t any data'"></div>
 
+<div class="container">
+    <div class="row py-2">
+        <div class="btn-group col-2" role="group">
+            <a type="button" class="btn btn-dark" href="/home">Home</a>
+        </div>
+
+        <div class="col-12">
+            <table class="table table-bordered my-2">
+                <thead>
+                <tr>
+                    <th scope="col">Contract</th>
+                    <th scope="col">Employee</th>
+                    <th scope="col">Research</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="emp : ${employees}">
+                    <th scope="row" th:text="${emp.contract}">i</th>
+                    <td th:text="${emp.firstName + ' ' + emp.lastName}">res</td>
+                    <td>
+                        <div th:each="r : ${emp.research}">
+                            <p th:text="${r.id + ') ' + r.title}"/>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--
 <tr th:each=" employee : ${employees} ">
     <div th:text="${employee.contract + ', ' + employee.firstName + ' ' + employee.lastName}"/>
     <div th:each="r : ${employee.research}">
@@ -15,9 +50,7 @@
     </div>
     <hr>
 </tr>
+-->
 
-<hr>
-<a href="/home">Home</a>
-<hr>
 </body>
 </html>

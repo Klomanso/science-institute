@@ -3,19 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>All research</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
 </head>
 <body>
 
-<tr th:each=" res : ${research} ">
-    <a th:href="@{/research/{number}(number=${res.id})}"
-       th:text="${res.id + ', ' + res.title}"/>
-    <hr>
-</tr>
+<div class="container">
+    <div class="row py-2">
+        <div class="btn-group col-4" role="group">
+            <a type="button" class="btn btn-primary" href="/research/new">New Research</a>
+            <a type="button" class="btn btn-dark" href="/home">Home</a>
+        </div>
 
-<a href="/research/new">Create new research</a>
+        <div class="col-12">
+            <table class="table table-bordered my-2">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Research</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="res : ${research}">
+                    <th scope="row" th:text="${res.id}">i</th>
+                    <td th:text="${res.title}">res</td>
+                    <td>
+                        <div class="btn-group">
+                            <a id="edit-user" type="button" class="btn btn-success col-4"
+                               th:href="@{/research/{number}(number=${res.id})}"><i class="fas fa-search"></i>
+                            </a>
+                            <form th:method="GET" th:action="@{/research/{id}/pdf(id=${res.id})}">
+                                <button class="btn btn-warning text-white"><i class="fa fa-print"
+                                                                              aria-hidden="true"></i></button>
+                            </form>
+                            <form class="d-inline" th:method="DELETE" th:action="@{/research/{id}(id = ${res.id})}">
+                                <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<hr>
-<a href="/home">Home</a>
-<hr>
 </body>
 </html>

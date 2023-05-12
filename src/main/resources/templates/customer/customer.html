@@ -1,24 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <title>Customer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
 </head>
-<body>
 
-<p th:text="${'OGRN: ' + customer.ogrn}">VALUE</p>
-<p th:text="${'Title: ' + customer.title}">VALUE</p>
-<p th:text="${'Email: ' + customer.email}">VALUE</p>
-<p th:text="${'Phone: ' + customer.phone}">VALUE</p>
+<body class="h-75">
 
-<a th:href="@{/customers/{id}/edit(id=${customer.ogrn})}">Edit</a>
-
-<form th:method="DELETE" th:action="@{/customers/{id}(id=${customer.ogrn})}">
-    <input type="submit" value="Delete"/>
-</form>
-
-<hr>
-<a href="/home">Home</a>
-<hr>
+<div class="container h-75">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h1 class="justify-content-center text-black">Customer Info</h1>
+        <div class="col-12 col-md-12 col-lg-12 p-4 border border-4 rounded rounded-5">
+            <form class="needs-validation" novalidate th:method="POST" th:action="@{/customers}"
+                  th:object="${customer}">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="ogrn">OGRN</label>
+                        <input type="text" class="form-control" id="ogrn" placeholder="OGRN" th:field="*{ogrn}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('ogrn')}" th:errors="*{ogrn}"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Title" th:field="*{title}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="Email" th:field="*{email}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" placeholder="Phone" th:field="*{phone}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+                    </div>
+                </div>
+                <div class="brn-group">
+                        <a class="btn btn-success col-2" th:href="@{/customers/{id}/edit(id=${customer.ogrn})}">
+                            <i class="fa fa-magic text-white"></i>
+                        </a>
+                    <div class="btn-group col-3" role="group">
+                        <a type="button" class="btn btn-dark" href="/home">Home</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>

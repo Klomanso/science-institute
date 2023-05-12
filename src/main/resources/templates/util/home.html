@@ -3,37 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
 </head>
 <body>
-Home Page
-<hr>
-<a href="/customers">Customers</a>
-<br>
-<a href="/crops">Crops</a>
-<br>
-<a href="/employees">Employees</a>
-<br>
-<a href="/education">Education List</a>
-<br>
-<a href="/titles">Titles</a>
-<br>
-<a href="/procedures">Procedures</a>
-<br>
-<a href="/research">Research List</a>
-<br>
-<a href="/species">Species</a>
-<br>
-<a href="/joinQuery">Join Query</a>
-<br>
-<a href="/conditionalQuery">Conditional Query</a>
-<br>
-<a href="/parameterizedQuery">Parameterized Query</a>
-<br>
-<a href="/finalQuery">Final Query</a>
-<br>
-<a href="/crossQuery">Cross Query</a>
-<br>
-<a href="/researchView">Research View</a>
-<br>
+
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <table class="table table-bordered my-2">
+                <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Go</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Customers</td>
+                    <td>
+                        <a href="/customers" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/customers/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Crops</td>
+                    <td>
+                        <a href="/crops" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/crops/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Employees</td>
+                    <td>
+                        <a href="/employees" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/employees/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Education List</td>
+                    <td>
+                        <a href="/education" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/education/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Titles</td>
+                    <td>
+                        <a href="/titles" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/titles/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td>Procedures</td>
+                    <td>
+                        <a href="/procedures" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/procedures/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Research List</td>
+                    <td>
+                        <a href="/research" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/research/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">7</th>
+                    <td>Species</td>
+                    <td>
+                        <a href="/species" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                        <a type="button" class="btn btn-success" href="/species/new"><i class="fa fa-plus"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">8</th>
+                    <td>Union Query</td>
+                    <td>
+                        <a href="/unionQuery" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">9</th>
+                    <td>Conditional Query</td>
+                    <td>
+                        <a href="/conditionalQuery" type="button" class="btn btn-info"><i
+                                class="fas fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">10</th>
+                    <td>Parameterized Query</td>
+                    <td>
+                        <a href="/parameterizedQuery" type="button" class="btn btn-info"><i
+                                class="fas fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">11</th>
+                    <td>Final Query</td>
+                    <td>
+                        <a href="/finalQuery" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">12</th>
+                    <td>Cross Query</td>
+                    <td>
+                        <a href="/crossQuery" type="button" class="btn btn-info"><i class="fas fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">13</th>
+                    <td>Create Research View</td>
+                    <td>
+                        <a href="/researchView" type="button" class="btn btn-info"><i
+                                class="fas fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

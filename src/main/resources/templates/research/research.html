@@ -13,7 +13,8 @@
 <p th:text="${'From Date: ' + research.fromDate}">VALUE</p>
 <p th:text="${'Finish Date: ' + research.finishDate}">VALUE</p>
 <p th:text="${'Budget: ' + research.budget} + '$'">VALUE</p>
-<p th:if="${research.lead != null}" th:text="${'Research Lead: ' + research.lead.firstName + ' ' + research.lead.lastName}">VALUE</p>
+<p th:if="${research.lead != null}"
+   th:text="${'Research Lead: ' + research.lead.firstName + ' ' + research.lead.lastName}">VALUE</p>
 <p th:if="${research.lead == null}" th:text="${'Research Lead: ' + research.lead}">VALUE</p>
 <p th:if="${research.procedures != null}" th:text="${'Procedures: ' + research.procedures.toString()}">VALUE</p>
 <p th:if="${research.procedures == null}" th:text="${'Procedures: ' + research.procedures}">VALUE</p>
@@ -26,9 +27,6 @@
 
 <form th:method="DELETE" th:action="@{/research/{id}(id=${research.id})}">
     <input type="submit" value="Delete"/>
-</form>
-<form th:method="GET" th:action="@{/research/{id}/pdf(id=${research.id})}">
-    <input type="submit" value="Print To PDF"/>
 </form>
 <hr>
 <a href="/home">Home</a>

@@ -1,30 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <title>Crop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
 </head>
-<body>
+<body class="h-75">
 
-<p th:text="${'brkNumber: ' + crop.brkNumber}">VALUE</p>
-<p th:text="${'Name: ' + crop.name}">VALUE</p>
-<p th:if="${crop.species != null}" th:text="${'Species: ' + crop.species.name}">VALUE</p>
-<p th:if="${crop.species == null}" th:text="${'Species: ' + crop.species}">VALUE</p>
-<p th:text="${'Winter hardiness: ' + crop.winterHardiness}">VALUE</p>
-<p th:text="${'PD Resistance: ' + crop.pdResistance}">VALUE</p>
-<p th:text="${'Yields: ' + crop.yields}">VALUE</p>
-<p th:text="${'Notes: ' + crop.notes}">VALUE</p>
-<p th:if="${crop.researchResult != null}" th:text="${'Research Result: ' + crop.researchResult.title}">VALUE</p>
-<p th:if="${crop.researchResult == null}" th:text="${'Research Result: ' + crop.researchResult}">VALUE</p>
+<div class="container h-75">
+    <div class="row h-100 justify-content-center align-items-center">
+        <h1 class="justify-content-center text-black">Crop Info</h1>
+        <div class="col-12 col-md-12 col-lg-12 p-4 border border-4 rounded rounded-5">
+            <form class="needs-validation" novalidate th:method="POST" th:action="@{/crops}"
+                  th:object="${crop}">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="brkNumber">BRK Number</label>
+                        <input type="text" class="form-control" id="brkNumber" placeholder="Number"
+                               th:field="*{brkNumber}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('brkNumber')}"
+                             th:errors="*{brkNumber}"></div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Name" th:field="*{name}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="species">Species</label>
+                        <input type="text" class="form-control" id="species" placeholder="Name" th:field="*{species}"
+                               required disabled th:if="${crop.species != null}" th:text="${crop.species.name}">
+                        <div class="text-danger" th:if="${#fields.hasErrors('species')}" th:errors="*{species}"></div>
+                        <input type="text" class="form-control" placeholder="Name" th:field="*{species}"
+                               required disabled th:if="${crop.species == null}" th:text="'No species'">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="notes">Notes</label>
+                        <input type="text" class="form-control" id="notes" placeholder="Notes" th:field="*{notes}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="rsr">Research Result</label>
+                        <input type="text" class="form-control" id="rsr" placeholder="Result"
+                               th:field="*{researchResult}"
+                               required disabled th:if="${crop.researchResult != null}"
+                               th:text="${crop.researchResult.title}">
+                        <div class="text-danger" th:if="${#fields.hasErrors('researchResult')}"
+                             th:errors="*{researchResult}"></div>
+                        <input type="text" class="form-control" placeholder="Result" th:field="*{researchResult}"
+                               required disabled th:if="${crop.researchResult == null}" th:text="'No research'">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3 btn-lg form-check">
+                        <label for="winter">Winter hardiness</label>
+                        <input type="checkbox" id="winter" placeholder="winter" th:field="*{winterHardiness}"
+                               required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('winterHardiness')}"
+                             th:errors="*{winterHardiness}">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 btn-lg form-check">
+                        <label for="pd">PD Resistance</label>
+                        <input type="checkbox" id="pd" placeholder="res" th:field="*{pdResistance}" required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('pdResistance')}"
+                             th:errors="*{pdResistance}">
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3 btn-lg form-check">
+                        <label for="yields">Yields</label>
+                        <input type="checkbox" id="yields" placeholder="res" th:field="*{yields}" required disabled>
+                        <div class="text-danger" th:if="${#fields.hasErrors('yields')}"
+                             th:errors="*{yields}">
+                        </div>
+                    </div>
+                </div>
+                <div class="brn-group">
+                    <a class="btn btn-success col-2" th:href="@{/crops/{id}/edit(id=${crop.brkNumber})}">
+                        <i class="fa fa-magic text-white"></i>
+                    </a>
+                    <div class="btn-group col-2" role="group">
+                        <a type="button" class="btn btn-dark" href="/home">Home</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-<a th:href="@{/crops/{id}/edit(id=${crop.brkNumber})}">Edit</a>
-
-<form th:method="DELETE" th:action="@{/crops/{id}(id=${crop.brkNumber})}">
-    <input type="submit" value="Delete"/>
-</form>
-
-<hr>
-<a href="/home">Home</a>
-<hr>
 </body>
 </html>

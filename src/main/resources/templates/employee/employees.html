@@ -3,19 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Employees</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
 </head>
 <body>
 
-<tr th:each=" employee : ${employees} ">
-    <a th:href="@{/employees/{number}(number=${employee.contract})}"
-       th:text="${employee.contract + ', ' + employee.firstName + ' ' + employee.lastName}"/>
-    <hr>
-</tr>
+<div class="container">
+    <div class="row py-2">
+        <div class="btn-group col-4" role="group">
+            <a type="button" class="btn btn-primary" href="/employees/new">New Employee</a>
+            <a type="button" class="btn btn-dark" href="/home">Home</a>
+        </div>
 
-<a href="/employees/new">Create new employee</a>
+        <div class="col-12">
+            <table class="table table-bordered my-2">
+                <thead>
+                <tr>
+                    <th scope="col">Contract</th>
+                    <th scope="col">Employee</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="emp : ${employees}">
+                    <th scope="row" th:text="${emp.contract}">i</th>
+                    <td th:text="${emp.firstName + ' ' + emp.lastName}">res</td>
+                    <td>
+                        <a id="edit-user" type="button" class="btn btn-success"
+                           th:href="@{/employees/{number}(number=${emp.contract})}"><i class="fas fa-search"></i></a>
+                        <form class="d-inline" th:method="DELETE" th:action="@{/employees/{id}(id = ${emp.contract})}">
+                            <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<hr>
-<a href="/home">Home</a>
-<hr>
 </body>
 </html>

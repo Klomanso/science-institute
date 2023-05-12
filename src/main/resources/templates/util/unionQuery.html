@@ -8,11 +8,9 @@
 
 <div th:if="${research.isEmpty()}" th:text="'There isn\'t any data'"></div>
 
-<tr th:each="res : ${research} ">
-    <div th:text="${res.id + ', ' + res.title}">
-    </div>
-    <div th:each="t : ${res.team}">
-        <p th:text="${t.firstName + ' ' + t.lastName + '(' + t.title.name + ')'}"/>
+<tr th:each="res, stats : ${research} ">
+    <div>
+        <p th:text="${res}"></p>
     </div>
     <hr>
 </tr>
